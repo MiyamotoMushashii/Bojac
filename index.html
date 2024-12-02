@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: black;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Mobilde daha iyi hizalama */
+}
+
+.image {
+    max-width: 90%;
+    max-height: 70%; /* Mobilde alan kısıtlaması */
+    z-index: 1;
+    border-radius: 10px; /* Köşeleri yuvarlat */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Hafif bir gölge */
+}
+
+.rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.rain::before, .rain::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    animation: rain-animation 1s linear infinite;
+}
+
+@keyframes rain-animation {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.message {
+    position: absolute;
+    bottom: 10%;
+    color: white;
+    text-align: center;
+    font-size: 16px; /* Mobilde daha küçük boyut */
+    padding: 10px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.5); /* Hafif arka plan */
+    border-radius: 5px;
+}
+
+/* Mobil için medya sorgusu */
+@media screen and (max-width: 768px) {
+    .message {
+        font-size: 14px;
+    }
+
+    .image {
+        max-width: 95%;
+        max-height: 60%;
+    }
+}
